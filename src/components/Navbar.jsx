@@ -24,8 +24,9 @@ const Navbar = () => {
       position="sticky" 
       elevation={0}
       sx={{
-        backgroundColor: darkMode ? '#1a1a1a' : '#ffffff',
-        borderBottom: `1px solid ${theme.palette.divider}`,
+        backgroundColor: darkMode ? '#1e293b' : '#fff',
+        borderBottom: `1px solid ${darkMode ? '#334155' : '#e2e8f0'}`,
+        transition: 'all 0.3s ease'
       }}
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -77,10 +78,9 @@ const Navbar = () => {
             onClick={() => setDarkMode(!darkMode)}
             sx={{ 
               ml: 1,
-              color: darkMode ? '#fff' : '#2c3e50',
-              border: `1px solid ${darkMode ? '#ffffff30' : '#2c3e5030'}`,
+              color: darkMode ? '#94a3b8' : '#64748b',
               '&:hover': {
-                backgroundColor: darkMode ? '#ffffff15' : '#2c3e5015',
+                backgroundColor: darkMode ? 'rgba(148, 163, 184, 0.1)' : 'rgba(100, 116, 139, 0.1)'
               }
             }}
           >

@@ -163,287 +163,307 @@ const CreateAssessment = () => {
   };
 
   return (
-    <div style={{ 
-      backgroundColor: darkMode ? '#1e293b' : '#f5f5f5',
-      minHeight: '100vh',
-      paddingTop: '24px',
-      paddingBottom: '24px',
-      transition: 'background-color 0.3s ease'
-    }}>
-      <Container maxWidth="md">
-        <Paper 
-          elevation={0}
-          sx={{ 
-            p: 4,
-            backgroundColor: darkMode ? '#334155' : '#fff',
-            borderRadius: 2
-          }}
-        >
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 4, gap: 2 }}>
-            <QuizIcon sx={{ fontSize: 32, color: darkMode ? '#3b82f6' : theme.palette.primary.main }} />
-            <Typography 
-              variant="h4" 
-              component="h1"
-              sx={{ 
-                fontWeight: 600,
-                color: darkMode ? '#f1f5f9' : '#2c3e50'
-              }}
-            >
-              Create Assessment
-            </Typography>
-          </Box>
-
-          <FormControl fullWidth sx={{ mb: 4 }}>
-            <InputLabel id="job-select-label">Select Job</InputLabel>
-            <Select
-              labelId="job-select-label"
-              value={selectedJobId}
-              label="Select Job"
-              onChange={(e) => setSelectedJobId(e.target.value)}
-              sx={{
-                backgroundColor: darkMode ? '#475569' : '#fff',
-                color: darkMode ? '#f1f5f9' : 'inherit',
-                '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: darkMode ? 'rgba(241, 245, 249, 0.2)' : 'rgba(0, 0, 0, 0.23)'
-                }
-              }}
-            >
-              <MenuItem value="">
-                <em>-- Select Job --</em>
-              </MenuItem>
-              {jobs.map((job) => (
-                <MenuItem key={job.id} value={job.id}>
-                  {job.title}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {questions.map((question, qIndex) => (
-            <Paper 
-              key={qIndex} 
-              sx={{ 
-                p: 3, 
-                mb: 3,
-                backgroundColor: darkMode ? '#475569' : '#f8fafc',
-                position: 'relative'
-              }}
-            >
-              <IconButton
-                size="small"
-                onClick={() => handleRemoveQuestion(qIndex)}
-                sx={{ 
-                  position: 'absolute',
-                  right: 8,
-                  top: 8,
-                  color: darkMode ? '#f1f5f9' : 'inherit'
-                }}
-              >
-                <DeleteOutlineIcon />
-              </IconButton>
-
+    <>
+      <div 
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: darkMode ? '#0f172a' : '#f5f5f5',
+          transition: 'background-color 0.3s ease',
+          zIndex: -1
+        }} 
+      />
+      
+      <div style={{ 
+        minHeight: '100vh',
+        paddingTop: '24px',
+        paddingBottom: '24px',
+      }}>
+        <Container maxWidth="md">
+          <Paper 
+            elevation={0}
+            sx={{ 
+              p: 4,
+              backgroundColor: darkMode ? '#1e293b' : '#fff',
+              borderRadius: 2
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 4, gap: 2 }}>
+              <QuizIcon sx={{ fontSize: 32, color: darkMode ? '#3b82f6' : theme.palette.primary.main }} />
               <Typography 
-                variant="h6" 
+                variant="h4" 
+                component="h1"
                 sx={{ 
-                  mb: 2,
+                  fontWeight: 600,
                   color: darkMode ? '#f1f5f9' : '#2c3e50'
                 }}
               >
-                Question {qIndex + 1}
+                Create Assessment
               </Typography>
+            </Box>
 
-              <TextField
-                fullWidth
-                label="Question Text"
-                value={question.questionText}
-                onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
-                sx={{ mb: 3 }}
-                InputProps={{
-                  sx: { 
-                    backgroundColor: darkMode ? '#334155' : '#fff',
-                    color: darkMode ? '#f1f5f9' : 'inherit'
+            <FormControl fullWidth sx={{ mb: 4 }}>
+              <InputLabel id="job-select-label">Select Job</InputLabel>
+              <Select
+                labelId="job-select-label"
+                value={selectedJobId}
+                label="Select Job"
+                onChange={(e) => setSelectedJobId(e.target.value)}
+                sx={{
+                  backgroundColor: darkMode ? '#475569' : '#fff',
+                  color: darkMode ? '#f1f5f9' : 'inherit',
+                  '& .MuiOutlinedInput-notchedOutline': {
+                    borderColor: darkMode ? 'rgba(241, 245, 249, 0.2)' : 'rgba(0, 0, 0, 0.23)'
                   }
                 }}
-              />
-
-              <Box sx={{ mb: 3 }}>
-                {question.options.map((option, oIndex) => (
-                  <TextField
-                    key={oIndex}
-                    fullWidth
-                    label={`Option ${oIndex + 1}`}
-                    value={option}
-                    onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
-                    sx={{ mb: 2 }}
-                    InputProps={{
-                      sx: { 
-                        backgroundColor: darkMode ? '#334155' : '#fff',
-                        color: darkMode ? '#f1f5f9' : 'inherit'
-                      }
-                    }}
-                  />
+              >
+                <MenuItem value="">
+                  <em>-- Select Job --</em>
+                </MenuItem>
+                {jobs.map((job) => (
+                  <MenuItem key={job.id} value={job.id}>
+                    {job.title}
+                  </MenuItem>
                 ))}
-              </Box>
+              </Select>
+            </FormControl>
 
-              <FormControl fullWidth>
-                <InputLabel>Correct Option</InputLabel>
-                <Select
-                  value={question.correctOption}
-                  label="Correct Option"
-                  onChange={(e) => handleCorrectOptionChange(qIndex, e.target.value)}
-                  sx={{
-                    backgroundColor: darkMode ? '#334155' : '#fff',
+            {questions.map((question, qIndex) => (
+              <Paper 
+                key={qIndex} 
+                sx={{ 
+                  p: 3, 
+                  mb: 3,
+                  backgroundColor: darkMode ? '#475569' : '#f8fafc',
+                  position: 'relative'
+                }}
+              >
+                <IconButton
+                  size="small"
+                  onClick={() => handleRemoveQuestion(qIndex)}
+                  sx={{ 
+                    position: 'absolute',
+                    right: 8,
+                    top: 8,
                     color: darkMode ? '#f1f5f9' : 'inherit'
                   }}
                 >
-                  <MenuItem value="">
-                    <em>-- Select Correct Option --</em>
-                  </MenuItem>
-                  {question.options.map((_, oIndex) => (
-                    <MenuItem key={oIndex} value={oIndex}>
-                      Option {oIndex + 1}
-                    </MenuItem>
+                  <DeleteOutlineIcon />
+                </IconButton>
+
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    mb: 2,
+                    color: darkMode ? '#f1f5f9' : '#2c3e50'
+                  }}
+                >
+                  Question {qIndex + 1}
+                </Typography>
+
+                <TextField
+                  fullWidth
+                  label="Question Text"
+                  value={question.questionText}
+                  onChange={(e) => handleQuestionChange(qIndex, e.target.value)}
+                  sx={{ mb: 3 }}
+                  InputProps={{
+                    sx: { 
+                      backgroundColor: darkMode ? '#334155' : '#fff',
+                      color: darkMode ? '#f1f5f9' : 'inherit'
+                    }
+                  }}
+                />
+
+                <Box sx={{ mb: 3 }}>
+                  {question.options.map((option, oIndex) => (
+                    <TextField
+                      key={oIndex}
+                      fullWidth
+                      label={`Option ${oIndex + 1}`}
+                      value={option}
+                      onChange={(e) => handleOptionChange(qIndex, oIndex, e.target.value)}
+                      sx={{ mb: 2 }}
+                      InputProps={{
+                        sx: { 
+                          backgroundColor: darkMode ? '#334155' : '#fff',
+                          color: darkMode ? '#f1f5f9' : 'inherit'
+                        }
+                      }}
+                    />
                   ))}
-                </Select>
-              </FormControl>
-            </Paper>
-          ))}
+                </Box>
 
-          <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
-            <Button
-              variant="outlined"
-              startIcon={<AddCircleOutlineIcon />}
-              onClick={handleAddQuestion}
-              sx={{
-                color: darkMode ? '#3b82f6' : theme.palette.primary.main,
-                borderColor: darkMode ? '#3b82f6' : theme.palette.primary.main,
-                '&:hover': {
-                  borderColor: darkMode ? '#2563eb' : theme.palette.primary.dark,
-                  backgroundColor: darkMode ? 'rgba(59, 130, 246, 0.1)' : undefined
-                }
-              }}
-            >
-              Add Question
-            </Button>
+                <FormControl fullWidth>
+                  <InputLabel>Correct Option</InputLabel>
+                  <Select
+                    value={question.correctOption}
+                    label="Correct Option"
+                    onChange={(e) => handleCorrectOptionChange(qIndex, e.target.value)}
+                    sx={{
+                      backgroundColor: darkMode ? '#334155' : '#fff',
+                      color: darkMode ? '#f1f5f9' : 'inherit'
+                    }}
+                  >
+                    <MenuItem value="">
+                      <em>-- Select Correct Option --</em>
+                    </MenuItem>
+                    {question.options.map((_, oIndex) => (
+                      <MenuItem key={oIndex} value={oIndex}>
+                        Option {oIndex + 1}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Paper>
+            ))}
 
-            {questions.length > 0 && (
+            <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
               <Button
-                variant="contained"
-                startIcon={<SaveIcon />}
-                onClick={handleSaveAssessment}
+                variant="outlined"
+                startIcon={<AddCircleOutlineIcon />}
+                onClick={handleAddQuestion}
                 sx={{
-                  backgroundColor: darkMode ? '#3b82f6' : theme.palette.primary.main,
+                  color: darkMode ? '#3b82f6' : theme.palette.primary.main,
+                  borderColor: darkMode ? '#3b82f6' : theme.palette.primary.main,
                   '&:hover': {
-                    backgroundColor: darkMode ? '#2563eb' : theme.palette.primary.dark,
+                    borderColor: darkMode ? '#2563eb' : theme.palette.primary.dark,
+                    backgroundColor: darkMode ? 'rgba(59, 130, 246, 0.1)' : undefined
                   }
                 }}
               >
-                Save Assessment
+                Add Question
               </Button>
-            )}
-          </Box>
 
-          {selectedJobId && selectedJobAssessments.length > 0 && (
-            <Box sx={{ mt: 4 }}>
-              <Divider sx={{ mb: 3 }} />
-              <Typography 
-                variant="h6" 
-                sx={{ 
-                  mb: 2,
-                  color: darkMode ? '#f1f5f9' : '#2c3e50',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 1
-                }}
-              >
-                <QuizIcon fontSize="small" />
-                Existing Assessments for {jobs.find(job => job.id === parseInt(selectedJobId))?.title}
-              </Typography>
-              
-              {selectedJobAssessments.map((assessment) => (
-                <Paper
-                  key={assessment.id}
-                  sx={{ 
-                    p: 2,
-                    mb: 2,
-                    backgroundColor: darkMode ? '#475569' : '#f8fafc',
+              {questions.length > 0 && (
+                <Button
+                  variant="contained"
+                  startIcon={<SaveIcon />}
+                  onClick={handleSaveAssessment}
+                  sx={{
+                    backgroundColor: darkMode ? '#3b82f6' : theme.palette.primary.main,
                     '&:hover': {
-                      backgroundColor: darkMode ? '#4b5563' : '#f1f5f9',
+                      backgroundColor: darkMode ? '#2563eb' : theme.palette.primary.dark,
                     }
                   }}
                 >
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Box>
-                      <Typography 
-                        sx={{ 
-                          color: darkMode ? '#f1f5f9' : '#2c3e50',
-                          fontWeight: 500,
-                          mb: 0.5
-                        }}
-                      >
-                        Assessment #{assessment.id}
-                      </Typography>
-                      <Typography 
-                        variant="body2"
-                        sx={{ 
-                          color: darkMode ? '#94a3b8' : '#64748b',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 1
-                        }}
-                      >
-                        <span>{assessment.questions.length} questions</span>
-                        <span>•</span>
-                        <span>Created on {new Date(assessment.createdAt).toLocaleDateString()}</span>
-                      </Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', gap: 1 }}>
-                      <Button 
-                        size="small"
-                        variant="outlined"
-                        onClick={() => setSelectedAssessment(assessment)}
-                      >
-                        View Details
-                      </Button>
-                      <IconButton
-                        onClick={() => handleDeleteClick(assessment.id)}
-                        sx={{ color: 'error.main' }}
-                      >
-                        <DeleteOutlineIcon />
-                      </IconButton>
-                    </Box>
-                  </Box>
-                </Paper>
-              ))}
+                  Save Assessment
+                </Button>
+              )}
             </Box>
-          )}
-        </Paper>
 
-        <DeleteConfirmationDialog
-          open={deleteConfirmation.open}
-          onClose={handleDeleteCancel}
-          onConfirm={handleDeleteConfirm}
-          title="Delete Assessment"
-          message="Are you sure you want to delete this assessment? This action cannot be undone."
-          darkMode={darkMode}
-        />
+            {selectedJobId && selectedJobAssessments.length > 0 && (
+              <Box sx={{ mt: 4 }}>
+                <Divider sx={{ mb: 3 }} />
+                <Typography 
+                  variant="h6" 
+                  sx={{ 
+                    mb: 2,
+                    color: darkMode ? '#f1f5f9' : '#2c3e50',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1
+                  }}
+                >
+                  <QuizIcon fontSize="small" />
+                  Existing Assessments for {jobs.find(job => job.id === parseInt(selectedJobId))?.title}
+                </Typography>
+                
+                {selectedJobAssessments.map((assessment) => (
+                  <Paper
+                    key={assessment.id}
+                    sx={{ 
+                      p: 2,
+                      mb: 2,
+                      backgroundColor: darkMode ? '#475569' : '#f8fafc',
+                      '&:hover': {
+                        backgroundColor: darkMode ? '#4b5563' : '#f1f5f9',
+                      }
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <Box>
+                        <Typography 
+                          sx={{ 
+                            color: darkMode ? '#f1f5f9' : '#2c3e50',
+                            fontWeight: 500,
+                            mb: 0.5
+                          }}
+                        >
+                          Assessment #{assessment.id}
+                        </Typography>
+                        <Typography 
+                          variant="body2"
+                          sx={{ 
+                            color: darkMode ? '#94a3b8' : '#64748b',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1
+                          }}
+                        >
+                          <span>{assessment.questions.length} questions</span>
+                          <span>•</span>
+                          <span>Created on {new Date(assessment.createdAt).toLocaleDateString()}</span>
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', gap: 1 }}>
+                        <Button 
+                          size="small"
+                          variant="outlined"
+                          onClick={() => setSelectedAssessment(assessment)}
+                          sx={{
+                            color: darkMode ? '#f1f5f9' : 'primary.main',
+                            borderColor: darkMode ? '#94a3b8' : 'primary.main',
+                            '&:hover': {
+                              borderColor: darkMode ? '#f1f5f9' : 'primary.dark',
+                              backgroundColor: darkMode ? 'rgba(241, 245, 249, 0.1)' : undefined
+                            }
+                          }}
+                        >
+                          View Details
+                        </Button>
+                        <IconButton
+                          onClick={() => handleDeleteClick(assessment.id)}
+                          sx={{ color: 'error.main' }}
+                        >
+                          <DeleteOutlineIcon />
+                        </IconButton>
+                      </Box>
+                    </Box>
+                  </Paper>
+                ))}
+              </Box>
+            )}
+          </Paper>
 
-        <Snackbar
-          open={notification.open}
-          autoHideDuration={4000}
-          onClose={() => setNotification(prev => ({ ...prev, open: false }))}
-          anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        >
-          <Alert 
-            onClose={() => setNotification(prev => ({ ...prev, open: false }))} 
-            severity={notification.type}
-            variant="filled"
-            sx={{ width: '100%' }}
+          <DeleteConfirmationDialog
+            open={deleteConfirmation.open}
+            onClose={handleDeleteCancel}
+            onConfirm={handleDeleteConfirm}
+            title="Delete Assessment"
+            message="Are you sure you want to delete this assessment? This action cannot be undone."
+            darkMode={darkMode}
+          />
+
+          <Snackbar
+            open={notification.open}
+            autoHideDuration={4000}
+            onClose={() => setNotification(prev => ({ ...prev, open: false }))}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           >
-            {notification.message}
-          </Alert>
-        </Snackbar>
-      </Container>
+            <Alert 
+              onClose={() => setNotification(prev => ({ ...prev, open: false }))} 
+              severity={notification.type}
+              variant="filled"
+            >
+              {notification.message}
+            </Alert>
+          </Snackbar>
+        </Container>
+      </div>
 
       {selectedAssessment && (
         <AssessmentDetails
@@ -455,7 +475,7 @@ const CreateAssessment = () => {
           onDelete={handleDeleteClick}
         />
       )}
-    </div>
+    </>
   );
 };
 

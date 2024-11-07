@@ -49,7 +49,7 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
           flexDirection: 'column', 
           height: '100%',
           transition: 'all 0.3s ease-in-out',
-          backgroundColor: darkMode ? '#1e1e1e' : '#fff',
+          backgroundColor: darkMode ? '#1e293b' : '#fff',
           '&:hover': {
             transform: 'translateY(-8px) scale(1.02)',
             boxShadow: darkMode 
