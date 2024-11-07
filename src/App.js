@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './pages/Dashboard';
+import JobDetails from './pages/JobDetails';
+import CandidateDetails from './pages/CandidateDetails';
+import CreateAssessment from './pages/CreateAssessment';
+import AppProvider from './context/AppContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <Router>
+        <Navbar />
+        <div className="container mx-auto p-4">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/jobs/:jobId" element={<JobDetails />} />
+            <Route path="/candidates/:candidateId" element={<CandidateDetails />} />
+            <Route path="/create-assessment" element={<CreateAssessment />} />
+          </Routes>
+        </div>
+      </Router>
+    </AppProvider>
   );
 }
 
