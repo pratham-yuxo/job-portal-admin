@@ -13,15 +13,25 @@ import {
 const AddJob = ({ isOpen, onClose, onSave }) => {
   const { addJob, darkMode } = useContext(AppContext);
   const [jobData, setJobData] = useState({
+    id: Date.now(),
     title: '',
     description: '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addJob(jobData);
+    const newJob = {
+      ...jobData,
+      id: Date.now()
+    };
+    
+    addJob(newJob);
     onSave?.();
-    setJobData({ title: '', description: '' });
+    setJobData({ 
+      id: Date.now(),
+      title: '', 
+      description: '' 
+    });
     onClose();
   };
 
@@ -33,8 +43,8 @@ const AddJob = ({ isOpen, onClose, onSave }) => {
       fullWidth
       PaperProps={{
         sx: {
-          backgroundColor: darkMode ? '#1e1e1e' : '#fff',
-          color: darkMode ? '#fff' : 'inherit',
+          backgroundColor: darkMode ? '#1e293b' : '#fff',
+          color: darkMode ? '#f1f5f9' : 'inherit',
           minHeight: '300px'
         }
       }}
