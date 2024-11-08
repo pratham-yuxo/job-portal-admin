@@ -15,7 +15,8 @@ import {
   Divider,
   useTheme,
   Snackbar,
-  Alert
+  Alert,
+  useMediaQuery
 } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import QuizIcon from '@mui/icons-material/Quiz';
@@ -40,6 +41,7 @@ const CreateAssessment = () => {
     message: '',
     type: 'success'
   });
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const selectedJobAssessments = assessments.filter(
     assessment => assessment.jobId === parseInt(selectedJobId)
@@ -384,7 +386,13 @@ const CreateAssessment = () => {
                       }
                     }}
                   >
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      flexDirection: { xs: 'column', sm: 'row' },
+                      justifyContent: 'space-between', 
+                      alignItems: { xs: 'flex-start', sm: 'center' },
+                      gap: { xs: 2, sm: 0 }
+                    }}>
                       <Box>
                         <Typography 
                           sx={{ 
@@ -401,7 +409,8 @@ const CreateAssessment = () => {
                             color: darkMode ? '#94a3b8' : '#64748b',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: 1
+                            gap: 1,
+                            flexWrap: 'wrap'
                           }}
                         >
                           <span>{assessment.questions.length} questions</span>
@@ -409,11 +418,18 @@ const CreateAssessment = () => {
                           <span>Created on {new Date(assessment.createdAt).toLocaleDateString()}</span>
                         </Typography>
                       </Box>
-                      <Box sx={{ display: 'flex', gap: 1 }}>
+                      
+                      <Box sx={{ 
+                        display: 'flex', 
+                        gap: 1,
+                        width: { xs: '100%', sm: 'auto' },
+                        justifyContent: { xs: 'flex-start', sm: 'flex-end' }
+                      }}>
                         <Button 
                           size="small"
                           variant="outlined"
                           onClick={() => setSelectedAssessment(assessment)}
+                          fullWidth={isMobile}
                           sx={{
                             color: darkMode ? '#f1f5f9' : 'primary.main',
                             borderColor: darkMode ? '#94a3b8' : 'primary.main',
@@ -427,7 +443,10 @@ const CreateAssessment = () => {
                         </Button>
                         <IconButton
                           onClick={() => handleDeleteClick(assessment.id)}
-                          sx={{ color: 'error.main' }}
+                          sx={{ 
+                            color: 'error.main',
+                            ml: { xs: 'auto', sm: 0 }
+                          }}
                         >
                           <DeleteOutlineIcon />
                         </IconButton>

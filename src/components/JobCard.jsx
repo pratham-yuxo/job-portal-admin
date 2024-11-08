@@ -122,68 +122,79 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
         <CardActions 
           sx={{ 
             display: 'flex',
-            justifyContent: 'flex-end',
+            justifyContent: 'space-between',
+            gap: 1,
             borderTop: 1,
             borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'divider',
             px: 2,
             py: 1.5,
-            '& > *': {
-              flex: '1',
-              maxWidth: '80px'
-            },
-            '& .MuiButton-root': {
-              textTransform: 'none',
-              fontWeight: 500,
-              letterSpacing: '0.3px'
-            }
+            flexWrap: 'wrap'
           }}
         >
-          <Link to={`/jobs/${job.id}`} style={{ textDecoration: 'none' }}>
-            <Button
-              fullWidth
+          <Box 
+            sx={{ 
+              display: 'flex',
+              gap: 1,
+              width: '100%',
+              justifyContent: 'space-between'
+            }}
+          >
+            <Link 
+              to={`/jobs/${job.id}`} 
+              style={{ 
+                textDecoration: 'none',
+                flex: 1
+              }}
+            >
+              <Button
+                fullWidth
+                size="small"
+                variant="outlined"
+                color="primary"
+                startIcon={<VisibilityIcon sx={{ fontSize: '0.9rem' }} />}
+                sx={{ 
+                  fontSize: '0.8rem',
+                  py: 0.5,
+                  whiteSpace: 'nowrap',
+                  minWidth: 0
+                }}
+              >
+                View
+              </Button>
+            </Link>
+            <Button 
               size="small"
               variant="outlined"
-              color="primary"
-              startIcon={<VisibilityIcon sx={{ fontSize: '0.9rem' }} />}
+              color="success" 
+              onClick={() => setIsEditJobOpen(true)}
+              startIcon={<EditIcon sx={{ fontSize: '0.9rem' }} />}
               sx={{ 
                 fontSize: '0.8rem',
                 py: 0.5,
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                flex: 1,
+                minWidth: 0
               }}
             >
-              View
+              Edit
             </Button>
-          </Link>
-          <Button 
-            fullWidth
-            size="small"
-            variant="outlined"
-            color="success" 
-            onClick={() => setIsEditJobOpen(true)}
-            startIcon={<EditIcon sx={{ fontSize: '0.9rem' }} />}
-            sx={{ 
-              fontSize: '0.8rem',
-              py: 0.5,
-              whiteSpace: 'nowrap'
-            }}
-          >
-            Edit
-          </Button>
-          <Button 
-            fullWidth
-            size="small"
-            variant="outlined"
-            color="error" 
-            onClick={() => setIsDeleteDialogOpen(true)}
-            startIcon={<DeleteIcon sx={{ fontSize: '0.9rem' }} />}
-            sx={{ 
-              fontSize: '0.75rem',
-              py: 0.5,
-              whiteSpace: 'nowrap'
-            }}
-          >
-            Delete
-          </Button>
+            <Button 
+              size="small"
+              variant="outlined"
+              color="error" 
+              onClick={() => setIsDeleteDialogOpen(true)}
+              startIcon={<DeleteIcon sx={{ fontSize: '0.9rem' }} />}
+              sx={{ 
+                fontSize: '0.75rem',
+                py: 0.5,
+                whiteSpace: 'nowrap',
+                flex: 1,
+                minWidth: 0
+              }}
+            >
+              Delete
+            </Button>
+          </Box>
         </CardActions>
       </Card>
 
