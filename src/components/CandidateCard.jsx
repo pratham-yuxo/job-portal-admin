@@ -6,39 +6,47 @@ import {
   Box,
   Button,
   Chip,
+  useMediaQuery,
+  useTheme,
+  IconButton
 } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import DescriptionIcon from '@mui/icons-material/Description';
 import InfoIcon from '@mui/icons-material/Info';
 
-const getStatusColor = (status) => {
-  const statusColors = {
-    'Under Review': {
-      bg: '#fff8dd',
-      color: '#ffc107',
-      darkBg: '#2c2000',
-    },
-    'Interview Scheduled': {
-      bg: '#e0f2f1',
-      color: '#009688',
-      darkBg: '#002b27',
-    },
-    'Shortlisted': {
-      bg: '#e8f5e9',
-      color: '#4caf50',
-      darkBg: '#002904',
-    },
-    'Rejected': {
-      bg: '#ffebee',
-      color: '#f44336',
-      darkBg: '#310000',
-    }
-  };
-  return statusColors[status] || { bg: '#f5f5f5', color: '#9e9e9e', darkBg: '#262626' };
-};
-
 const CandidateCard = ({ candidate, darkMode }) => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const getStatusColor = (status) => {
+    const statusColors = {
+      'Under Review': {
+        bg: darkMode ? '#422006' : '#fff8dd',
+        color: darkMode ? '#ffc107' : '#b45309'
+      },
+      'Interview Scheduled': {
+        bg: darkMode ? '#042f2e' : '#e0f2f1',
+        color: darkMode ? '#06b6d4' : '#0891b2'
+      },
+      'Shortlisted': {
+        bg: darkMode ? '#052e16' : '#e8f5e9',
+        color: darkMode ? '#22c55e' : '#15803d'
+      },
+      'Hired': {
+        bg: darkMode ? '#052e16' : '#e8f5e9',
+        color: darkMode ? '#22c55e' : '#15803d'
+      },
+      'Rejected': {
+        bg: darkMode ? '#450a0a' : '#fee2e2',
+        color: darkMode ? '#ef4444' : '#dc2626'
+      }
+    };
+    return statusColors[status] || {
+      bg: darkMode ? '#334155' : '#f1f5f9',
+      color: darkMode ? '#f1f5f9' : '#475569'
+    };
+  };
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -50,33 +58,40 @@ const CandidateCard = ({ candidate, darkMode }) => {
     });
   };
 
+  const statusColor = getStatusColor(candidate.status);
+
   return (
     <Paper
       elevation={0}
       sx={{ 
-        py: 2,
-        px: 3,
+        p: isMobile ? 2 : 3,
         backgroundColor: darkMode ? '#1e293b' : '#fff',
         borderRadius: 2,
+        mb: 2,
         transition: 'all 0.3s ease',
         '&:hover': {
-          transform: 'translateY(-2px)',
-          boxShadow: darkMode ? '0 4px 20px rgba(0,0,0,0.4)' : '0 4px 20px rgba(0,0,0,0.1)'
+          backgroundColor: darkMode ? '#2c3e50' : '#f8fafc'
         }
       }}
     >
-     
       <Box sx={{ 
         display: 'flex', 
-        alignItems: 'center', 
+        flexDirection: isMobile ? 'column' : 'row',
         justifyContent: 'space-between',
+        alignItems: isMobile ? 'flex-start' : 'center',
+        gap: isMobile ? 2 : 0
       }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: 'column',
+          gap: 1,
+          width: isMobile ? '100%' : 'auto'
+        }}>
           <Typography 
+            variant={isMobile ? "body1" : "h6"}
             sx={{ 
               fontWeight: 600,
-              color: darkMode ? '#f1f5f9' : '#2c3e50',
-              minWidth: '150px'
+              color: darkMode ? '#f1f5f9' : '#2c3e50'
             }}
           >
             {candidate.name}
@@ -84,35 +99,48 @@ const CandidateCard = ({ candidate, darkMode }) => {
           
           <Box sx={{ 
             display: 'flex', 
-            alignItems: 'center', 
+            alignItems: 'center',
             gap: 1,
-            color: darkMode ? '#94a3b8' : '#64748b',
+            flexWrap: 'wrap'
           }}>
-            <CalendarTodayIcon sx={{ fontSize: '0.9rem' }} />
-            <Typography variant="body2">
-              {formatDate(candidate.applicationDate)}
-            </Typography>
+            <Box sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 0.5,
+              color: darkMode ? '#94a3b8' : '#64748b'
+            }}>
+              <CalendarTodayIcon sx={{ fontSize: '0.9rem' }} />
+              <Typography variant="body2">
+                {formatDate(candidate.applicationDate)}
+              </Typography>
+            </Box>
+            
+            <Chip
+              label={candidate.status}
+              size="small"
+              sx={{
+                height: '24px',
+                backgroundColor: statusColor.bg,
+                color: statusColor.color,
+                fontWeight: 500,
+                '& .MuiChip-label': {
+                  px: 1
+                }
+              }}
+            />
           </Box>
-          
-          <Chip
-            label={candidate.status}
-            size="small"
-            sx={{
-              backgroundColor: darkMode ? 
-                getStatusColor(candidate.status).darkBg : 
-                getStatusColor(candidate.status).bg,
-              color: getStatusColor(candidate.status).color,
-              fontWeight: 500,
-              height: '24px'
-            }}
-          />
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          gap: 1,
+          width: isMobile ? '100%' : 'auto',
+          justifyContent: isMobile ? 'flex-start' : 'flex-end'
+        }}>
           <Button
             size="small"
             variant="outlined"
-            startIcon={<DescriptionIcon />}
+            startIcon={!isMobile && <DescriptionIcon />}
             onClick={() => window.open(candidate.resumeUrl, '_blank')}
             sx={{
               textTransform: 'none',
@@ -121,25 +149,27 @@ const CandidateCard = ({ candidate, darkMode }) => {
               '&:hover': {
                 backgroundColor: darkMode ? 'rgba(59, 130, 246, 0.1)' : undefined,
                 borderColor: darkMode ? '#3b82f6' : 'primary.main',
-              }
+              },
+              minWidth: isMobile ? '40%' : 'auto'
             }}
           >
-            Resume
+            {isMobile ? 'Resume' : 'View Resume'}
           </Button>
           <Button
             size="small"
             variant="contained"
-            startIcon={<InfoIcon />}
+            startIcon={!isMobile && <InfoIcon />}
             onClick={() => navigate(`/candidates/${candidate.id}`)}
             sx={{
               textTransform: 'none',
               backgroundColor: darkMode ? '#3b82f6' : 'primary.main',
               '&:hover': {
                 backgroundColor: darkMode ? '#2563eb' : 'primary.dark',
-              }
+              },
+              minWidth: isMobile ? '40%' : 'auto'
             }}
           >
-            Details
+            {isMobile ? 'Details' : 'View Details'}
           </Button>
         </Box>
       </Box>
