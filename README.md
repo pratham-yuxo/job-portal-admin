@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+# Job Portal Admin Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern admin dashboard for managing job postings, candidates, and assessments. Built with React and Material-UI, featuring a responsive design and dark mode support.
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+- [Live Application](https://job-portal-admin-nine.vercel.app/)
+<!-- - [Documentation](https://docs.google.com/document/d/1HeYEj57SSlVMjouRlIYqUlvzZBxEJPqh0OAl2R0-UEY/edit) -->
+- [Assignment](https://docs.google.com/document/d/1pdm1EIYk5qplAKdb180lqs6XqVzz7BiRq8qbyJ12VxI/edit?tab=t.0)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 📝 Create, edit, and delete job postings
+- 👥 Track candidate applications
+- 📊 Create and manage assessments for jobs
+- 🌓 Dark/Light mode toggle
+- 📱 Fully responsive design
+<!-- - 🔔 Real-time notifications -->
+- 💾 Local storage persistence
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- React.js
+- Material-UI (MUI)
+- React Router DOM
+- Context API for state management
+- Local Storage for data persistence
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
 
-### `npm run build`
+Before you begin, ensure you have the following installed:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js (version 14.0 or higher)
+- npm (usually comes with Node.js)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository:
 
-### `npm run eject`
+```bash
+git clone https://github.com/pratham-yuxo/job-portal-admin.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Navigate to the project directory:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd job-portal-admin
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install dependencies:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+## Running the Application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Start the development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run start
+```
 
-### Code Splitting
+2. Open your browser and visit:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+http://localhost:3000
+```
 
-### Analyzing the Bundle Size
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+job-portal-admin/
+├── public/
+├── src/
+│   ├── components/         # Reusable components
+│   ├── context/           # Context providers
+│   ├── pages/             # Page components
+│   ├── App.js             # Main app component
+│   └── index.js           # Entry point
+└── package.json
+```
 
-### Making a Progressive Web App
+## Key Features Breakdown
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Job Management
 
-### Advanced Configuration
+- Create new job postings
+- Edit existing job details
+- Delete job postings
+- View job applications
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Candidate Management
 
-### Deployment
+- View candidate details
+- Track application status
+- Manage candidate assessments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Assessment System
 
-### `npm run build` fails to minify
+- Create custom assessments for jobs
+- Multiple choice questions
+- Edit and delete assessments
+<!-- - Track assessment results -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### User Interface
+
+- Responsive design for all screen sizes
+- Dark mode support
+- Intuitive navigation
+- Real-time feedback notifications
+
+## Local Storage
+
+The application uses browser's local storage to persist data. To reset the application state:
+
+1. Open browser developer tools (F12)
+2. Go to Application tab
+3. Select Local Storage
+4. Clear storage data
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- ## License
+
+This project is licensed under the MIT License - see the LICENSE file for details -->
+
+## Support
+
+For support, email prathamv0077@gmail.com or open an issue in the repository.
+
+<!-- ## Acknowledgments
+
+- Material-UI for the component library
+- React team for the amazing framework
+- All contributors who have helped shape this project -->
