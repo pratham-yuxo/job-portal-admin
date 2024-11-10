@@ -98,7 +98,14 @@ const Dashboard = () => {
           {jobs.length > 0 ? (
             <Grid container spacing={2}>
               {jobs.map((job) => (
-                <Grid item xs={12} sm={12} md={6} lg={4} xl={3} key={job.id}>
+                <Grid 
+                  item 
+                  xs={12} 
+                  sm={12} 
+                  md={6} 
+                  lg={4} 
+                  key={job.id}
+                >
                   <JobCard 
                     job={job} 
                     onDeleteSuccess={() => handleNotification('Job deleted successfully')}

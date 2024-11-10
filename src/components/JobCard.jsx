@@ -38,6 +38,7 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
 
   return (
     <>
+    
       <Card 
         elevation={2} 
         sx={{ 
