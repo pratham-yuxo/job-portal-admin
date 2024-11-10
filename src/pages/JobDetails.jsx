@@ -95,7 +95,7 @@ const JobDetails = () => {
                   color: darkMode ? '#f1f5f9' : '#2c3e50'
                 }}
               >
-                Candidates Applied ({jobCandidates.length})
+                Candidates Applied - {jobCandidates.length}
               </Typography>
             </Box>
           </Paper>

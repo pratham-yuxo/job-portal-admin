@@ -19,6 +19,36 @@ const CandidateCard = ({ candidate, darkMode }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const getStatusColor = (status) => {
+    const statusMap = {
+      'Under Review': {
+      bg: '#fff8dd',
+      color: '#ffc107',
+      darkBg: '#2c2000',
+    },
+    'Interview Scheduled': {
+      bg: '#e0f2f1',
+      color: '#009688',
+      darkBg: '#002b27',
+    },
+    'Shortlisted': {
+      bg: '#e8f5e9',
+      color: '#4caf50',
+      darkBg: '#002904',
+    },
+    'Rejected': {
+      bg: '#ffebee',
+      color: '#f44336',
+      darkBg: '#310000',
+    }
+    };
+    console.log(status.toLowerCase())
+    return statusMap[status] || {
+      color: darkMode ? '#94a3b8' : '#64748b',
+      bgcolor: darkMode ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.1)'
+    };
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return 'Invalid Date';
@@ -28,6 +58,8 @@ const CandidateCard = ({ candidate, darkMode }) => {
       day: 'numeric' 
     });
   };
+
+  const statusStyle = getStatusColor(candidate.status);
 
   return (
     <Paper
@@ -89,8 +121,14 @@ const CandidateCard = ({ candidate, darkMode }) => {
               size="small"
               sx={{
                 height: '24px',
-                backgroundColor: darkMode ? '#334155' : '#f1f5f9',
-                color: darkMode ? '#f1f5f9' : '#475569'
+                backgroundColor: darkMode ? 
+                getStatusColor(candidate.status).darkBg : 
+                getStatusColor(candidate.status).bg,
+                color: getStatusColor(candidate.status).color,
+                fontWeight: 500,
+                '& .MuiChip-label': {
+                  px: 1.5
+                }
               }}
             />
           </Box>

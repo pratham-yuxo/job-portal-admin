@@ -14,6 +14,7 @@ const AppProvider = ({ children }) => {
             title: 'Frontend Developer',
             description: 'Work on React applications.',
             candidatesApplied: 0,
+            
           },
           {
             id: 2,
@@ -40,6 +41,8 @@ const AppProvider = ({ children }) => {
             resume: null, // Assuming we handle resumes differently
             applicationDate: '2021-09-01',
             status: 'Under Review',
+            skills: ['React', 'JavaScript', 'CSS', 'HTML'],
+            experience: 2,
           },
           {
             id: 2,
@@ -50,6 +53,8 @@ const AppProvider = ({ children }) => {
             resume: null,
             applicationDate: '2021-09-02',
             status: 'Interview Scheduled',
+            skills: ['React', 'JavaScript', 'CSS', 'HTML'],
+            experience: 12,
           },
         ];
   });

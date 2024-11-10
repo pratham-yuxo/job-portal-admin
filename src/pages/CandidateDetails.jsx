@@ -258,7 +258,7 @@ const CandidateDetails = () => {
                 >
                   <MenuItem value="Under Review">Under Review</MenuItem>
                   <MenuItem value="Interview Scheduled">Interview Scheduled</MenuItem>
-                  <MenuItem value="Hired">Hired</MenuItem>
+                  <MenuItem value="Shortlisted">Shortlisted</MenuItem>
                   <MenuItem value="Rejected">Rejected</MenuItem>
                 </Select>
               </FormControl>

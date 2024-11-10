@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import EditJob from './EditJob';
+import DeleteConfirmationDialog from './DeleteConfirmationDialog';
 import {
   Card,
   CardContent,
@@ -10,11 +11,6 @@ import {
   Button,
   Chip,
   Box,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  DialogContentText
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -127,8 +123,7 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
             borderTop: 1,
             borderColor: darkMode ? 'rgba(255,255,255,0.1)' : 'divider',
             px: 2,
-            py: 1.5,
-            flexWrap: 'wrap'
+            py: 1.5
           }}
         >
           <Box 
@@ -136,7 +131,11 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
               display: 'flex',
               gap: 1,
               width: '100%',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
+              '& > *': {  // Target all direct children
+                minWidth: '80px',  // Minimum width for buttons
+                flex: 1
+              }
             }}
           >
             <Link 
@@ -155,8 +154,7 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
                 sx={{ 
                   fontSize: '0.8rem',
                   py: 0.5,
-                  whiteSpace: 'nowrap',
-                  minWidth: 0
+                  whiteSpace: 'nowrap'
                 }}
               >
                 View
@@ -171,9 +169,7 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
               sx={{ 
                 fontSize: '0.8rem',
                 py: 0.5,
-                whiteSpace: 'nowrap',
-                flex: 1,
-                minWidth: 0
+                whiteSpace: 'nowrap'
               }}
             >
               Edit
@@ -187,9 +183,7 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
               sx={{ 
                 fontSize: '0.75rem',
                 py: 0.5,
-                whiteSpace: 'nowrap',
-                flex: 1,
-                minWidth: 0
+                whiteSpace: 'nowrap'
               }}
             >
               Delete
@@ -198,52 +192,14 @@ const JobCard = ({ job, onDeleteSuccess, onEditSuccess }) => {
         </CardActions>
       </Card>
 
-      {/* Delete Confirmation Dialog */}
-      <Dialog
+      <DeleteConfirmationDialog
         open={isDeleteDialogOpen}
         onClose={() => setIsDeleteDialogOpen(false)}
-        PaperProps={{
-          style: {
-            backgroundColor: darkMode ? '#1e1e1e' : '#fff',
-            color: darkMode ? '#fff' : 'inherit'
-          }
-        }}
-      >
-        <DialogTitle 
-          id="delete-dialog-title" 
-          sx={{ 
-            pb: 1,
-            color: darkMode ? '#fff' : 'inherit'
-          }}
-        >
-          Confirm Deletion
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="delete-dialog-description">
-            Are you sure you want to delete the job posting "{job.title}"? 
-            This action cannot be undone.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions sx={{ px: 3, pb: 2 }}>
-          <Button 
-            onClick={() => setIsDeleteDialogOpen(false)}
-            variant="outlined"
-            size="small"
-          >
-            Cancel
-          </Button>
-          <Button 
-            onClick={handleDelete}
-            variant="contained"
-            color="error"
-            size="small"
-            startIcon={<DeleteIcon />}
-            autoFocus
-          >
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
+        onConfirm={handleDelete}
+        title="Confirm Deletion"
+        message={`Are you sure you want to delete the job posting "${job.title}"? This action cannot be undone.`}
+        darkMode={darkMode}
+      />
 
       <EditJob
         isOpen={isEditJobOpen}
