@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import CandidateCard from '../components/CandidateCard';
+import CandidateCard from '../components/candidate/CandidateCard';
 import {
   Container,
   Typography,

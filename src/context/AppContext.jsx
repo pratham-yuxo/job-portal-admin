@@ -1,62 +1,18 @@
-import React, { createContext, useState,useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import { mockJobs } from '../mockData/mockJobs';
+import { mockCandidates } from '../mockData/mockCandidates';
 
 export const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [jobs, setJobs] = useState(() => {
     const savedJobs = localStorage.getItem('jobs');
-    return savedJobs
-      ? JSON.parse(savedJobs)
-      : [
-          // mock jobs
-          {
-            id: 1,
-            title: 'Frontend Developer',
-            description: 'Work on React applications.',
-            candidatesApplied: 0,
-            
-          },
-          {
-            id: 2,
-            title: 'Backend Developer',
-            description: 'Develop APIs with Node.js.',
-            candidatesApplied: 0,
-          },
-        ];
+    return savedJobs ? JSON.parse(savedJobs) : mockJobs;
   });
 
-  // Initialize candidates from localStorage or with mock data
   const [candidates, setCandidates] = useState(() => {
     const savedCandidates = localStorage.getItem('candidates');
-    return savedCandidates
-      ? JSON.parse(savedCandidates)
-      : [
-          // Mock candidates data
-          {
-            id: 1,
-            jobId: 1,
-            name: 'Alice Smith',
-            email: 'alice@example.com',
-            contact: '123-456-7890',
-            resume: null, // Assuming we handle resumes differently
-            applicationDate: '2021-09-01',
-            status: 'Under Review',
-            skills: ['React', 'JavaScript', 'CSS', 'HTML'],
-            experience: 2,
-          },
-          {
-            id: 2,
-            jobId: 1,
-            name: 'Bob Johnson',
-            email: 'bob@example.com',
-            contact: '987-654-3210',
-            resume: null,
-            applicationDate: '2021-09-02',
-            status: 'Interview Scheduled',
-            skills: ['React', 'JavaScript', 'CSS', 'HTML'],
-            experience: 12,
-          },
-        ];
+    return savedCandidates ? JSON.parse(savedCandidates) : mockCandidates;
   });
 
   // Update localStorage whenever jobs or candidates change

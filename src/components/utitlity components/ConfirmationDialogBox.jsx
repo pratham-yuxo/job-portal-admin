@@ -7,7 +7,6 @@ import {
   DialogActions,
   Button,
 } from '@mui/material';
-import { dark } from '@mui/material/styles/createPalette';
 
 const DeleteConfirmationDialog = ({ 
   open, 
@@ -31,7 +30,6 @@ const DeleteConfirmationDialog = ({
         {title}
       </DialogTitle>
       <DialogContent>
-        {console.log("first console", darkMode)}
         <DialogContentText sx={{ color: darkMode ? '#94a3b8' : '#inherit' }}>
           {message}
         </DialogContentText>

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
-import JobCard from '../components/JobCard';
-import AddJob from '../components/AddJob';
+import JobCard from '../components/jobs/JobCard';
+import AddJob from '../components/jobs/AddJob';
 import { 
   Grid, 
   Container, 
@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import WorkIcon from '@mui/icons-material/Work';
 
 const Dashboard = () => {
-  const { jobs, setJobs, darkMode } = useContext(AppContext);
+  const { jobs, darkMode } = useContext(AppContext);
   const [isAddJobOpen, setIsAddJobOpen] = useState(false);
   const theme = useTheme();
   
@@ -24,7 +24,7 @@ const Dashboard = () => {
     message: '',
     type: 'success'
   });
-
+  // Function to handle notifications like success, error, etc.
   const handleNotification = (message, type = 'success') => {
     setNotification({
       open: true,
@@ -94,7 +94,7 @@ const Dashboard = () => {
               Add Job
             </Button>
           </div>
-
+               {/* mapping all the jobs */}
           {jobs.length > 0 ? (
             <Grid container spacing={2}>
               {jobs.map((job) => (
@@ -115,6 +115,7 @@ const Dashboard = () => {
               ))}
             </Grid>
           ) : (
+            // if no jobs are listed
             <div
               style={{
                 display: 'flex',
@@ -156,7 +157,7 @@ const Dashboard = () => {
               </Typography>
             </div>
           )}
-
+          {/* AddJob component to add new jobs */}
           <AddJob 
             isOpen={isAddJobOpen} 
             onClose={() => setIsAddJobOpen(false)}

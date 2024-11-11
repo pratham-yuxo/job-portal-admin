@@ -22,8 +22,8 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import QuizIcon from '@mui/icons-material/Quiz';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AssessmentDetails from '../components/AssessmentDetails';
-import DeleteConfirmationDialog from '../components/DeleteConfirmationDialog';
+import AssessmentDetails from '../components/assessment/AssessmentDetails';
+import DeleteConfirmationDialog from '../components/utitlity components/ConfirmationDialogBox';
 
 const CreateAssessment = () => {
   const { jobs, assessments, setAssessments, darkMode } = useContext(AppContext);
