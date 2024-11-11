@@ -24,6 +24,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import UpdateIcon from '@mui/icons-material/Update';
 import CodeIcon from '@mui/icons-material/Code';
 import PersonIcon from '@mui/icons-material/Person';
+import ResumePreview from '../components/candidate/ResumePreview';
 
 const CandidateDetails = () => {
   const { candidateId } = useParams();
@@ -34,6 +35,7 @@ const CandidateDetails = () => {
     message: '',
     severity: 'success'
   });
+  const [isResumePreviewOpen, setIsResumePreviewOpen] = useState(false);
 
   const candidate = candidates.find((c) => c.id === parseInt(candidateId));
 
@@ -208,9 +210,7 @@ const CandidateDetails = () => {
             <Button
               variant="outlined"
               startIcon={<DescriptionIcon />}
-              href={candidate.resumeLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => setIsResumePreviewOpen(true)}
               sx={{
                 mb: 4,
                 color: darkMode ? '#3b82f6' : 'primary.main',
@@ -221,7 +221,7 @@ const CandidateDetails = () => {
                 }
               }}
             >
-              Download Resume
+              View Resume
             </Button>
 
             <Divider sx={{ mb: 4 }} />
@@ -295,6 +295,15 @@ const CandidateDetails = () => {
           {notification.message}
         </Alert>
       </Snackbar>
+      
+{console.log(candidate.resume,"dd")}
+      <ResumePreview
+        open={isResumePreviewOpen}
+        onClose={() => setIsResumePreviewOpen(false)}
+        resumeUrl={candidate.resume}
+        candidateName={candidate.name}
+        darkMode={darkMode}
+      />
     </>
   );
 };
