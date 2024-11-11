@@ -43,6 +43,14 @@ const QuestionForm = ({
         value={question.questionText}
         onChange={(e) => onQuestionChange(index, e.target.value)}
         sx={{ mb: 3 }}
+        InputLabelProps={{
+          sx: {
+            color: darkMode ? '#94a3b8' : 'inherit',
+            '&.Mui-focused': {
+              color: darkMode ? '#3b82f6' : 'primary.main',
+            }
+          }
+        }}
         InputProps={{
           sx: { 
             backgroundColor: darkMode ? '#334155' : '#fff',
@@ -60,6 +68,14 @@ const QuestionForm = ({
             value={option}
             onChange={(e) => onOptionChange(index, oIndex, e.target.value)}
             sx={{ mb: 2 }}
+            InputLabelProps={{
+              sx: {
+                color: darkMode ? '#94a3b8' : 'inherit',
+                '&.Mui-focused': {
+                  color: darkMode ? '#3b82f6' : 'primary.main',
+                }
+              }
+            }}
             InputProps={{
               sx: { 
                 backgroundColor: darkMode ? '#334155' : '#fff',
@@ -71,14 +87,32 @@ const QuestionForm = ({
       </Box>
 
       <FormControl fullWidth>
-        <InputLabel>Correct Option</InputLabel>
+        <InputLabel 
+          sx={{
+            color: darkMode ? '#94a3b8' : 'inherit',
+            '&.Mui-focused': {
+              color: darkMode ? '#3b82f6' : 'primary.main',
+            }
+          }}
+        >
+          Correct Option
+        </InputLabel>
         <Select
           value={question.correctOption}
           label="Correct Option"
           onChange={(e) => onCorrectOptionChange(index, e.target.value)}
           sx={{
             backgroundColor: darkMode ? '#334155' : '#fff',
-            color: darkMode ? '#f1f5f9' : 'inherit'
+            color: darkMode ? '#f1f5f9' : 'inherit',
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: darkMode ? 'rgba(148, 163, 184, 0.2)' : 'rgba(0, 0, 0, 0.23)'
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: darkMode ? 'rgba(148, 163, 184, 0.3)' : 'rgba(0, 0, 0, 0.23)'
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: darkMode ? '#3b82f6' : 'primary.main'
+            }
           }}
         >
           <MenuItem value=""><em>-- Select Correct Option --</em></MenuItem>

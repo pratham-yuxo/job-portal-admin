@@ -130,6 +130,11 @@ const CreateAssessment = () => {
         assessment.id === editedAssessment.id ? editedAssessment : assessment
       )
     );
+    setNotification({
+      open: true,
+      message: 'Assessment edited successfully',
+      type: 'success'
+    });
     setShowSuccess(true);
   };
 
