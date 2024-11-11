@@ -138,7 +138,7 @@ const CandidateCard = ({ candidate, darkMode }) => {
             display: 'flex', 
             gap: 1,
             width: isMobile ? '100%' : 'auto',
-            justifyContent: isMobile ? 'space-between' : 'flex-end'
+            justifyContent: isMobile ? 'space-evenly' : 'flex-end'
           }}>
             <Button
               size="small"
