@@ -43,7 +43,6 @@ const CandidateCard = ({ candidate, darkMode }) => {
       darkBg: '#310000',
     }
     };
-    console.log(status.toLowerCase())
     return statusMap[status] || {
       color: darkMode ? '#94a3b8' : '#64748b',
       bgcolor: darkMode ? 'rgba(148, 163, 184, 0.1)' : 'rgba(148, 163, 184, 0.1)'
@@ -60,7 +59,6 @@ const CandidateCard = ({ candidate, darkMode }) => {
     });
   };
 
-  const statusStyle = getStatusColor(candidate.status);
 
   return (
     <>
@@ -140,7 +138,7 @@ const CandidateCard = ({ candidate, darkMode }) => {
             display: 'flex', 
             gap: 1,
             width: isMobile ? '100%' : 'auto',
-            justifyContent: isMobile ? 'flex-start' : 'flex-end'
+            justifyContent: isMobile ? 'space-between' : 'flex-end'
           }}>
             <Button
               size="small"
