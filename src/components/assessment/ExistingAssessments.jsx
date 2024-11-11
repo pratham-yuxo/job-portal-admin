@@ -7,7 +7,7 @@ const ExistingAssessments = ({
   assessments, 
   jobTitle, 
   onViewDetails, 
-  onDelete, 
+  onDelete,  
   darkMode,
   isMobile 
 }) => {

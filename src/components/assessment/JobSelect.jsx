@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-const JobSelect = ({ selectedJobId, jobs, onChange, darkMode,setSelectedJobId }) => {
+const JobSelect = ({ selectedJobId, jobs, darkMode,setSelectedJobId }) => {
   return (
     <>
         <FormControl fullWidth sx={{ mb: 4 }}>

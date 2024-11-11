@@ -3,16 +3,9 @@ import { AppContext } from '../context/AppContext';
 import {
   Container,
   Typography,
-  Select,
-  MenuItem,
-  TextField,
   Button,
   Box,
   Paper,
-  FormControl,
-  InputLabel,
-  IconButton,
-  Divider,
   useTheme,
   Snackbar,
   Alert,
@@ -21,7 +14,6 @@ import {
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import QuizIcon from '@mui/icons-material/Quiz';
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AssessmentDetails from '../components/assessment/AssessmentDetails';
 import DeleteConfirmationDialog from '../components/utitlity components/ConfirmationDialogBox';
 import JobSelect from '../components/assessment/JobSelect';

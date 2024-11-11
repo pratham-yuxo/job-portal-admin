@@ -10,7 +10,8 @@ export const mockCandidates = [
     status: 'Under Review',
     skills: ['React', 'JavaScript', 'CSS', 'HTML'],
     experience: 2,
-    education: 'BS Computer Science'
+    education: 'BS Computer Science',
+    resume: 'https://drive.google.com/file/d/168nvMqEzphlsycCd5_JVDtxRDtSzzSc0/view?usp=sharing'
   },
   {
     id: 2,
@@ -23,7 +24,8 @@ export const mockCandidates = [
     status: 'Interview Scheduled',
     skills: ['React', 'JavaScript', 'CSS', 'HTML'],
     experience: 12,
-    education: 'MS Software Engineering'
+    education: 'MS Software Engineering',
+    resume: 'https://drive.google.com/file/d/168nvMqEzphlsycCd5_JVDtxRDtSzzSc0/view?usp=sharing'
   },
   {
     id: 3,
@@ -36,7 +38,8 @@ export const mockCandidates = [
     status: 'Pending',
     skills: ['Node.js', 'Express', 'MongoDB', 'AWS'],
     experience: 5,
-    education: 'BS Information Technology'
+    education: 'BS Information Technology',
+    resume: 'https://drive.google.com/file/d/168nvMqEzphlsycCd5_JVDtxRDtSzzSc0/view?usp=sharing'
   },
   {
     id: 4,
@@ -49,6 +52,7 @@ export const mockCandidates = [
     status: 'Hired',
     skills: ['Figma', 'Adobe XD', 'Sketch', 'UI/UX'],
     experience: 7,
-    education: 'BFA Design'
+    education: 'BFA Design',
+    resume: 'https://drive.google.com/file/d/168nvMqEzphlsycCd5_JVDtxRDtSzzSc0/view?usp=sharing'
   }
 ]; 
